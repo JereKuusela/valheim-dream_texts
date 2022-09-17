@@ -12,9 +12,7 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace Plugin;
 
-
 public class Data : MonoBehaviour {
-
   public static void SetupWatcher(string pattern, Action action) {
     FileSystemWatcher watcher = new(Plugin.ConfigPath, pattern);
     watcher.Created += (s, e) => action();

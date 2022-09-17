@@ -18,3 +18,5 @@ This means the random chances are not added together but checked individually.
 
 - v1.0
 	- Initial release.
+
+Thanks for Azumatt for creating the mod icon!
