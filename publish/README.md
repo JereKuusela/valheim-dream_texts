@@ -16,6 +16,9 @@ This means the random chances are not added together but checked individually.
 
 # Changelog
 
+- v1.1
+	- Fixes version check not working properly.
+
 - v1.0
 	- Initial release.
 

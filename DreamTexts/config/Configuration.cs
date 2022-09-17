@@ -7,5 +7,7 @@ public class Configuration {
 #nullable enable
   public static void Init(ConfigWrapper wrapper) {
     valueDreamData = wrapper.AddValue("dream_data");
+    valueDreamData.ValueChanged += () => DreamManager.FromSetting(valueDreamData.Value);
+
   }
 }

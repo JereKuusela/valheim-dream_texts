@@ -28,7 +28,7 @@ public class VersionCheck {
   private string? ReceivedMinimumRequiredVersion;
 
   // Tracks which clients have passed the version check (only for servers).
-  private readonly List<ZRpc> ValidatedClients = new();
+  private readonly Dictionary<ZRpc, bool> ValidatedClients = new();
 
   // Optional backing field to use ConfigSync values (will override other fields).
   private ConfigSync? ConfigSync;
@@ -61,7 +61,7 @@ public class VersionCheck {
   }
   private string ErrorClient() {
     if (ReceivedMinimumRequiredVersion == null)
-      return $"Mod {DisplayName} must not be installed.";
+      return $"Mod {DisplayName} must be installed on the server.";
     var myVersionOk = new System.Version(CurrentVersion) >= new System.Version(ReceivedMinimumRequiredVersion);
     if (myVersionOk)
       return $"Mod {DisplayName} requires maximum {ReceivedCurrentVersion}. Installed is version {CurrentVersion}.";
@@ -72,7 +72,10 @@ public class VersionCheck {
   private string Error(ZRpc? rpc = null) => rpc == null ? ErrorClient() : ErrorServer(rpc);
   private static readonly HashSet<VersionCheck> versionChecks = new();
   private static VersionCheck[] GetFailedClient() => versionChecks.Where(check => !check.IsVersionOk()).ToArray();
-  private static VersionCheck[] GetFailedServer(ZRpc rpc) => versionChecks.Where(check => !check.ValidatedClients.Contains(rpc)).ToArray();
+  private static VersionCheck[] GetFailedServer(ZRpc rpc) => versionChecks.Where(check => {
+    if (check.ValidatedClients.TryGetValue(rpc, out var result)) return !result;
+    return check.ModRequired;
+  }).ToArray();
   private static void Logout() {
     Game.instance.Logout();
     AccessTools.DeclaredField(typeof(ZNet), "m_connectionStatus").SetValue(null, ZNet.ConnectionStatus.ErrorVersion);
@@ -90,8 +93,8 @@ public class VersionCheck {
         Debug.Log($"Received {check.DisplayName} version {currentVersion} and minimum version {minimumRequiredVersion} from the server.");
       check.ReceivedMinimumRequiredVersion = minimumRequiredVersion;
       check.ReceivedCurrentVersion = currentVersion;
-      if (ZNet.instance.IsServer() && check.IsVersionOk())
-        check.ValidatedClients.Add(rpc);
+      if (ZNet.instance.IsServer())
+        check.ValidatedClients[rpc] = check.IsVersionOk();
     }
   }
   private static bool VerifyServer(ZNet znet, ZRpc rpc) {
@@ -121,12 +124,9 @@ public class VersionCheck {
       check.Initialize();
       peer.m_rpc.Register<ZPackage>($"VersionCheck_{check.Name}", (ZRpc rpc, ZPackage pkg) => VersionCheck.CheckVersion(check.Name, rpc, pkg));
       // If the mod is not required, then it's enough for only one side to do the check.
-      if (!check.ModRequired && !__instance.IsServer()) continue;
-      if (__instance.IsServer())
-        Debug.Log($"Sending {check.DisplayName} version {check.CurrentVersion} and minimum version {check.MinimumRequiredVersion} to the client");
-      else
-        Debug.Log($"Sending {check.DisplayName} version {check.CurrentVersion} and minimum version {check.MinimumRequiredVersion} to the server");
-
+      if (!check.ModRequired && __instance.IsServer()) continue;
+      var target = __instance.IsServer() ? "client" : "server";
+      Debug.Log($"Sending {check.DisplayName} version {check.CurrentVersion} and minimum version {check.MinimumRequiredVersion} to the ${target}");
       ZPackage zpackage = new ZPackage();
       zpackage.Write(check.MinimumRequiredVersion);
       zpackage.Write(check.CurrentVersion);

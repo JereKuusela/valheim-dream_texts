@@ -14,6 +14,14 @@ public class SaveData {
     DreamManager.ToFile(text);
   }
 }
+
+[HarmonyPatch(typeof(ZoneSystem), nameof(ZoneSystem.SetupLocations))]
+public class LoadData {
+  static void Postfix() {
+    DreamManager.FromFile();
+  }
+}
+
 [HarmonyPatch]
 public class DreamManager {
   public static string FileName = "dream_texts.yaml";

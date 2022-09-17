@@ -8,7 +8,7 @@ namespace Plugin;
 public class Plugin : BaseUnityPlugin {
   const string GUID = "dream_texts";
   const string NAME = "Dream Texts";
-  const string VERSION = "1.0";
+  const string VERSION = "1.1";
 #nullable disable
   public static ManualLogSource Log;
 #nullable enable
