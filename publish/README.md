@@ -1,6 +1,6 @@
 # Dream Texts
 
-Allow changing dream texts and conditions.
+Allows changing dream texts and conditions.
 
 Install on all clients and on the server if you want to sync the dreams (modding [guide](https://youtu.be/L9ljm2eKLrk)).
 
