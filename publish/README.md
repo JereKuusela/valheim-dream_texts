@@ -24,6 +24,9 @@ Donations: [Buy me a computer](https://www.buymeacoffee.com/jerekuusela)
 
 # Changelog
 
+- v1.3
+	- Fixes the mod not working.
+
 - v1.2
 	- Fixes the black screen.
 

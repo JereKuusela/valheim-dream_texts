@@ -5,16 +5,15 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using BepInEx;
-using UnityEngine;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
 namespace DreamTextsPlugin;
 
-public class Data : MonoBehaviour {
+public class Data {
   public static void SetupWatcher(string pattern, Action action) {
-    FileSystemWatcher watcher = new(Plugin.ConfigPath, pattern);
+    FileSystemWatcher watcher = new(DreamTextsPlugin.ConfigPath, pattern);
     watcher.Created += (s, e) => action();
     watcher.Changed += (s, e) => action();
     watcher.Renamed += (s, e) => action();
@@ -35,7 +34,7 @@ public class Data : MonoBehaviour {
     try {
       return Deserializer().Deserialize<List<T>>(raw);
     } catch (Exception ex1) {
-      Plugin.Log.LogError($"{fileName}: {ex1.Message}");
+      DreamTextsPlugin.Log.LogError($"{fileName}: {ex1.Message}");
       try {
         return DeserializerUnSafe().Deserialize<List<T>>(raw);
       } catch (Exception) {
@@ -46,7 +45,7 @@ public class Data : MonoBehaviour {
 
 
   public static string Read(string pattern) {
-    var data = Directory.GetFiles(Plugin.ConfigPath, pattern).Select(name => File.ReadAllText(name));
+    var data = Directory.GetFiles(DreamTextsPlugin.ConfigPath, pattern).Select(name => File.ReadAllText(name));
     return string.Join("\n", data);
   }
 

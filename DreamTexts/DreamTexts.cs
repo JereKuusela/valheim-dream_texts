@@ -5,10 +5,10 @@ using Service;
 
 namespace DreamTextsPlugin;
 [BepInPlugin(GUID, NAME, VERSION)]
-public class Plugin : BaseUnityPlugin {
+public class DreamTextsPlugin : BaseUnityPlugin {
   const string GUID = "dream_texts";
   const string NAME = "Dream Texts";
-  const string VERSION = "1.2";
+  const string VERSION = "1.3";
 #nullable disable
   public static ManualLogSource Log;
 #nullable enable

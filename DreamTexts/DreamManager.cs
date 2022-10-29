@@ -22,13 +22,12 @@ public class LoadData {
   }
 }
 
-[HarmonyPatch]
+[HarmonyPatch(typeof(DreamTexts), nameof(DreamTexts.GetRandomDreamText)), HarmonyPriority(Priority.VeryLow)]
 public class DreamManager {
   public static string FileName = "dream_texts.yaml";
-  public static string FilePath = Path.Combine(Plugin.ConfigPath, FileName);
+  public static string FilePath = Path.Combine(DreamTextsPlugin.ConfigPath, FileName);
   public static string Pattern = "dream_texts*.yaml";
   private static Dictionary<string, GameObject> Prefabs = new();
-  [HarmonyPatch(typeof(DreamTexts), nameof(DreamTexts.GetRandomDreamText)), HarmonyPriority(Priority.VeryLow)]
   static void Prefix(DreamTexts __instance) {
     if (Dreams.Count > 0)
       __instance.m_texts = Dreams;
@@ -75,13 +74,13 @@ public class DreamManager {
       var data = Data.Deserialize<DreamData>(yaml, FileName)
         .Select(FromData).ToList();
       if (data.Count == 0) {
-        Plugin.Log.LogWarning($"Failed to load any dream data.");
+        DreamTextsPlugin.Log.LogWarning("Failed to load any dream data.");
         return;
       }
-      Plugin.Log.LogInfo($"Reloading {data.Count} dream data.");
+      DreamTextsPlugin.Log.LogInfo($"Reloading {data.Count} dream data.");
       Dreams = data;
     } catch (Exception e) {
-      Plugin.Log.LogError(e.StackTrace);
+      DreamTextsPlugin.Log.LogError(e.StackTrace);
     }
   }
   public static void SetupWatcher() {
