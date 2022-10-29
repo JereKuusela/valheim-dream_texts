@@ -10,7 +10,7 @@ using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace Plugin;
+namespace DreamTextsPlugin;
 
 public class Data : MonoBehaviour {
   public static void SetupWatcher(string pattern, Action action) {

@@ -1,6 +1,6 @@
 {
   "name": "Dream_Texts",
-  "version_number": "1.1.0",
+  "version_number": "1.2.0",
   "website_url": "https://github.com/JereKuusela/valheim-dream_texts",
   "description": "Allows changing dream texts and conditions.",
   "dependencies": [

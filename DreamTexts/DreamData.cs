@@ -1,5 +1,5 @@
 using System.ComponentModel;
-namespace Plugin;
+namespace DreamTextsPlugin;
 
 public class DreamData {
   public string text = "";

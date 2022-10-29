@@ -1,6 +1,6 @@
 using ServerSync;
 using Service;
-namespace Plugin;
+namespace DreamTextsPlugin;
 public class Configuration {
 #nullable disable
   public static CustomSyncedValue<string> valueDreamData;

@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using HarmonyLib;
 using UnityEngine;
-namespace Plugin;
+namespace DreamTextsPlugin;
 
 [HarmonyPatch(typeof(Hud), nameof(Hud.Awake))]
 public class SaveData {

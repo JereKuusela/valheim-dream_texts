@@ -1,9 +1,24 @@
-# valheim-dream_texts
+# Dream Texts
 
-This project is a game play tweak to a game called Valheim.
+Allows changing dream texts and conditions.
 
-To compile, you need to manually add correct libraries to Libs folder. Check project file for needed ones.
+Install on all clients and on the server if you want to sync the dreams (modding [guide](https://youtu.be/L9ljm2eKLrk)).
 
-- Download BepInEx for Valheim and use DLLs from core and unstripped_corlib folders.
-- Valheim DLLs can be found from Valheim_Data/Manageed folder.
-- DLLS which end with _publicized require using https://github.com/CabbageCrow/AssemblyPublicizer.
+# Usage
+
+After loading a world, `dream_texts.yaml` is generated to the config folder.
+
+The file can be modified while in the game. If installed on server, then the server file is applied to all clients.
+
+When sleeping, the game randomly selects one of the available dreams and then does the random chance roll for that dream.
+
+This means the random chances are not added together but checked individually.
+
+# Credits
+
+Thanks for Azumatt for creating the mod icon!
+
+Sources: [GitHub](https://github.com/JereKuusela/valheim-dream_texts)
+
+Donations: [Buy me a computer](https://www.buymeacoffee.com/jerekuusela)
+

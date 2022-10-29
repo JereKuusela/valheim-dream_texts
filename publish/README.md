@@ -14,12 +14,21 @@ When sleeping, the game randomly selects one of the available dreams and then do
 
 This means the random chances are not added together but checked individually.
 
+# Credits
+
+Thanks for Azumatt for creating the mod icon!
+
+Sources: [GitHub](https://github.com/JereKuusela/valheim-dream_texts)
+
+Donations: [Buy me a computer](https://www.buymeacoffee.com/jerekuusela)
+
 # Changelog
+
+- v1.2
+	- Fixes the black screen.
 
 - v1.1
 	- Fixes version check not working properly.
 
 - v1.0
 	- Initial release.
-
-Thanks for Azumatt for creating the mod icon!
