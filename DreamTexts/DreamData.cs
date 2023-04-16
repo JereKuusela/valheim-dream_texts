@@ -1,7 +1,8 @@
 using System.ComponentModel;
 namespace DreamTextsPlugin;
 
-public class DreamData {
+public class DreamData
+{
   public string text = "";
   [DefaultValue(0.1f)]
   public float chance = 0.1f;
