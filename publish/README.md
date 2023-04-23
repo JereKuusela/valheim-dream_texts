@@ -21,20 +21,3 @@ Thanks for Azumatt for creating the mod icon!
 Sources: [GitHub](https://github.com/JereKuusela/valheim-dream_texts)
 
 Donations: [Buy me a computer](https://www.buymeacoffee.com/jerekuusela)
-
-# Changelog
-
-- v1.4
-  - Fixes config reload triggering on file metadata change.
-
-- v1.3
-  - Fixes the mod not working.
-
-- v1.2
-  - Fixes the black screen.
-
-- v1.1
-  - Fixes version check not working properly.
-
-- v1.0
-  - Initial release.

@@ -11,7 +11,6 @@ using BepInEx.Logging;
 
 namespace Service
 {
-
   public class Watcher
   {
     static Dictionary<string, byte[]> hashes = new();
@@ -40,6 +39,12 @@ namespace Service
       watcher.IncludeSubdirectories = true;
       watcher.SynchronizingObject = ThreadingHelper.SynchronizingObject;
       watcher.EnableRaisingEvents = true;
+    }
+    public static void Setup(string file, Action action)
+    {
+      var folder = Path.GetDirectoryName(file);
+      var pattern = Path.GetFileName(file);
+      Setup(folder, pattern, action);
     }
     public static void Setup(ConfigFile config, ManualLogSource logger)
     {

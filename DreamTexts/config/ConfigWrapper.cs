@@ -3,11 +3,12 @@ using ServerSync;
 
 namespace Service;
 
-public class ConfigWrapper {
-
+public class ConfigWrapper
+{
   private ConfigFile ConfigFile;
   private ConfigSync ConfigSync;
-  public ConfigWrapper(string command, ConfigFile configFile, ConfigSync configSync) {
+  public ConfigWrapper(string command, ConfigFile configFile, ConfigSync configSync)
+  {
     ConfigFile = configFile;
     ConfigSync = configSync;
   }
