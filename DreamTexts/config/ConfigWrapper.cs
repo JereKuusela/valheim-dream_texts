@@ -5,12 +5,10 @@ namespace Service;
 
 public class ConfigWrapper
 {
-  private ConfigFile ConfigFile;
-  private ConfigSync ConfigSync;
-  public ConfigWrapper(string command, ConfigFile configFile, ConfigSync configSync)
+  private readonly ConfigSync ConfigSync;
+  public ConfigWrapper(ConfigSync configSync)
   {
-    ConfigFile = configFile;
     ConfigSync = configSync;
   }
-  public CustomSyncedValue<string> AddValue(string identifier) => new CustomSyncedValue<string>(ConfigSync, identifier);
+  public CustomSyncedValue<string> AddValue(string identifier) => new(ConfigSync, identifier);
 }

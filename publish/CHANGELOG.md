@@ -1,3 +1,6 @@
+- v1.5
+  - Changes the data format to be easier to use.
+
 - v1.4
   - Fixes config reload triggering on file metadata change.
 

@@ -33,7 +33,7 @@ public class DreamManager
   public static string FileName = "dream_texts.yaml";
   public static string FilePath = Path.Combine(DreamTextsPlugin.ConfigPath, FileName);
   public static string Pattern = "dream_texts*.yaml";
-  private static Dictionary<string, GameObject> Prefabs = new();
+  private static readonly Dictionary<string, GameObject> Prefabs = new();
   static void Prefix(DreamTexts __instance)
   {
     if (Dreams.Count > 0)
@@ -42,20 +42,24 @@ public class DreamManager
   private static List<DreamTexts.DreamText> Dreams = new();
   public static DreamTexts.DreamText FromData(DreamData data)
   {
-    DreamTexts.DreamText dream = new();
-    dream.m_text = data.text;
-    dream.m_chanceToDream = data.chance;
-    dream.m_falseKeys = data.falseKeys.ToList();
-    dream.m_trueKeys = data.trueKeys.ToList();
+    DreamTexts.DreamText dream = new()
+    {
+      m_text = data.text,
+      m_chanceToDream = data.chance,
+      m_falseKeys = data.falseKeys == null ? Helper.ToList(data.forbiddenKeys) : data.falseKeys.ToList(),
+      m_trueKeys = data.trueKeys == null ? Helper.ToList(data.requiredKeys) : data.trueKeys.ToList()
+    };
     return dream;
   }
   public static DreamData ToData(DreamTexts.DreamText dream)
   {
-    DreamData data = new();
-    data.text = dream.m_text;
-    data.chance = dream.m_chanceToDream;
-    data.falseKeys = dream.m_falseKeys.ToArray();
-    data.trueKeys = dream.m_trueKeys.ToArray();
+    DreamData data = new()
+    {
+      text = dream.m_text,
+      chance = dream.m_chanceToDream,
+      forbiddenKeys = Helper.FromList(dream.m_falseKeys),
+      requiredKeys = Helper.FromList(dream.m_trueKeys),
+    };
     return data;
   }
 
@@ -75,6 +79,12 @@ public class DreamManager
     var yaml = Data.Read(Pattern);
     Configuration.valueDreamData.Value = yaml;
     Set(yaml);
+    if (yaml.Contains("trueKeys") || yaml.Contains("falseKeys"))
+    {
+      DreamTextsPlugin.Log.LogWarning("Updating dream_texts.yaml to the new format.");
+      yaml = Data.Serializer().Serialize(Dreams.Select(ToData).ToList());
+      File.WriteAllText(FilePath, yaml);
+    }
   }
   public static void FromSetting(string yaml)
   {
