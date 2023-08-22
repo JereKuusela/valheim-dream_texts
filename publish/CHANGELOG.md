@@ -1,3 +1,6 @@
+- v1.6
+  - Fixes for the new update.
+
 - v1.5
   - Changes the data format to be easier to use.
 
@@ -9,9 +12,3 @@
 
 - v1.2
   - Fixes the black screen.
-
-- v1.1
-  - Fixes version check not working properly.
-
-- v1.0
-  - Initial release.
