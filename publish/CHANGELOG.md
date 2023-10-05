@@ -1,3 +1,6 @@
+- v1.7
+  - Fixes for the new update.
+
 - v1.6
   - Fixes for the new update.
 
@@ -9,6 +12,3 @@
 
 - v1.3
   - Fixes the mod not working.
-
-- v1.2
-  - Fixes the black screen.
