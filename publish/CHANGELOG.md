@@ -1,3 +1,7 @@
+- v1.8
+  - Adds dependency to YamlDotNet package.
+  - Fixed for the new update.
+
 - v1.7
   - Fixes for the new update.
 
@@ -9,6 +13,3 @@
 
 - v1.4
   - Fixes config reload triggering on file metadata change.
-
-- v1.3
-  - Fixes the mod not working.

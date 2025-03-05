@@ -1,9 +1,10 @@
 {
   "name": "Dream_Texts",
-  "version_number": "1.7.0",
+  "version_number": "1.8.0",
   "website_url": "https://github.com/JereKuusela/valheim-dream_texts",
   "description": "Allows changing dream texts and conditions.",
   "dependencies": [
-    "denikson-BepInExPack_Valheim-5.4.2200"
+    "denikson-BepInExPack_Valheim-5.4.2200",
+    "ValheimModding-YamlDotNet-16.3.0"
   ]
 }

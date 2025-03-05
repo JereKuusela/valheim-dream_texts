@@ -9,7 +9,7 @@ public class DreamTextsPlugin : BaseUnityPlugin
 {
   const string GUID = "dream_texts";
   const string NAME = "Dream Texts";
-  const string VERSION = "1.7";
+  const string VERSION = "1.8";
 #nullable disable
   public static ManualLogSource Log;
 #nullable enable
