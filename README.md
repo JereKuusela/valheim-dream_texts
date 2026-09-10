@@ -36,7 +36,7 @@ After Bonemass is defeated, the bad dream would appear 50% of the time.
   requiredKeys: defeated_eikthyr
 ```
 
-See [Global keys](https://valheim.fandom.com/wiki/Global_Keys) for a list of required or forbidden keys.
+See [Global keys](https://valheim.wiki/Global_Keys) for a list of required or forbidden keys.
 
 ## Credits
 
